@@ -1,0 +1,6 @@
+{
+  "name": "Granthagar 3D — College Library & Bangla Archive",
+  "description": "Interactive 3D college library management system with Bangla literature archive, admin librarian management, student registration approvals, and book circulation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

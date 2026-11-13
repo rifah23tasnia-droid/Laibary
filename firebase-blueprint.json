@@ -1,0 +1,447 @@
+{
+  "entities": {
+    "Book": {
+      "title": "Book",
+      "description": "A Bangla or academic book in the college library 3D archive and catalog.",
+      "type": "object",
+      "properties": {
+        "titleBn": {
+          "type": "string",
+          "description": "Book title in Bengali script",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "titleEn": {
+          "type": "string",
+          "description": "Book title transliterated or translated into English",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "authorBn": {
+          "type": "string",
+          "description": "Author name in Bengali script",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "authorEn": {
+          "type": "string",
+          "description": "Author name in English",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "category": {
+          "type": "string",
+          "description": "Library classification category",
+          "enum": [
+            "উপন্যাস (Novel)",
+            "কবিতা (Poetry)",
+            "বিজ্ঞান ও প্রযুক্তি (Science)",
+            "ইতিহাস ও মুক্তিযুদ্ধ (History)",
+            "দর্শন ও প্রবন্ধ (Philosophy)",
+            "নাটক ও সাহিত্য (Drama)"
+          ]
+        },
+        "isbn": {
+          "type": "string",
+          "description": "ISBN or library accession code",
+          "minLength": 4,
+          "maxLength": 32
+        },
+        "shelfCode": {
+          "type": "string",
+          "description": "3D Wing and shelf location code",
+          "minLength": 2,
+          "maxLength": 24
+        },
+        "totalCopies": {
+          "type": "integer",
+          "description": "Total physical copies held by the college library"
+        },
+        "availableCopies": {
+          "type": "integer",
+          "description": "Currently available copies for student borrowing"
+        },
+        "publishYear": {
+          "type": "integer",
+          "description": "Original publication year"
+        },
+        "coverColor": {
+          "type": "string",
+          "description": "Hex color for 3D leather cover binding",
+          "minLength": 7,
+          "maxLength": 7,
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "spineAccent": {
+          "type": "string",
+          "description": "Hex color for 3D gold/foil spine embossing",
+          "minLength": 7,
+          "maxLength": 7,
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "summaryBn": {
+          "type": "string",
+          "description": "Synopsis in Bengali",
+          "minLength": 1,
+          "maxLength": 600
+        },
+        "summaryEn": {
+          "type": "string",
+          "description": "Synopsis in English",
+          "minLength": 1,
+          "maxLength": 600
+        },
+        "addedByUid": {
+          "type": "string",
+          "description": "UID of the Admin or Librarian who cataloged the book",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server update timestamp"
+        }
+      },
+      "required": [
+        "titleBn",
+        "titleEn",
+        "authorBn",
+        "authorEn",
+        "category",
+        "isbn",
+        "shelfCode",
+        "totalCopies",
+        "availableCopies",
+        "publishYear",
+        "coverColor",
+        "spineAccent",
+        "summaryBn",
+        "summaryEn",
+        "addedByUid",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Librarian": {
+      "title": "Librarian",
+      "description": "A college librarian staff account appointed by the Admin.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Librarian full name in English",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "nameBn": {
+          "type": "string",
+          "description": "Librarian full name in Bengali",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "employeeId": {
+          "type": "string",
+          "description": "Official College Staff ID",
+          "minLength": 3,
+          "maxLength": 32,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "department": {
+          "type": "string",
+          "description": "Assigned library wing or academic division",
+          "minLength": 2,
+          "maxLength": 80
+        },
+        "shift": {
+          "type": "string",
+          "description": "Assigned duty shift",
+          "enum": [
+            "Morning (8:00 AM - 2:00 PM)",
+            "Afternoon (2:00 PM - 8:00 PM)",
+            "Full Day (9:00 AM - 5:00 PM)"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "description": "Staff active status",
+          "enum": ["active", "suspended"]
+        },
+        "addedByUid": {
+          "type": "string",
+          "description": "UID of the Admin who appointed this librarian",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server update timestamp"
+        }
+      },
+      "required": [
+        "name",
+        "nameBn",
+        "employeeId",
+        "department",
+        "shift",
+        "status",
+        "addedByUid",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "StudentApproval": {
+      "title": "StudentApproval",
+      "description": "Student library card and borrowing privilege approval record.",
+      "type": "object",
+      "properties": {
+        "studentName": {
+          "type": "string",
+          "description": "Student full name in English",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "studentNameBn": {
+          "type": "string",
+          "description": "Student full name in Bengali",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "rollNumber": {
+          "type": "string",
+          "description": "College academic roll number",
+          "minLength": 2,
+          "maxLength": 32,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "department": {
+          "type": "string",
+          "description": "Academic department",
+          "minLength": 2,
+          "maxLength": 80
+        },
+        "semester": {
+          "type": "string",
+          "description": "Current academic semester or year",
+          "enum": [
+            "1st Semester",
+            "2nd Semester",
+            "3rd Semester",
+            "4th Semester",
+            "5th Semester",
+            "6th Semester",
+            "7th Semester",
+            "8th Semester",
+            "Honours Final",
+            "Masters"
+          ]
+        },
+        "sessionYear": {
+          "type": "string",
+          "description": "Academic session year",
+          "minLength": 4,
+          "maxLength": 20
+        },
+        "status": {
+          "type": "string",
+          "description": "Membership approval state",
+          "enum": ["pending", "approved", "rejected"]
+        },
+        "maxBooksAllowed": {
+          "type": "integer",
+          "description": "Maximum simultaneous book loans permitted"
+        },
+        "applicantUid": {
+          "type": "string",
+          "description": "UID of the student or staff who created the application",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "reviewedByUid": {
+          "type": "string",
+          "description": "UID of the Admin or Librarian who last updated status",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server update timestamp"
+        }
+      },
+      "required": [
+        "studentName",
+        "studentNameBn",
+        "rollNumber",
+        "department",
+        "semester",
+        "sessionYear",
+        "status",
+        "maxBooksAllowed",
+        "applicantUid",
+        "reviewedByUid",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "CirculationLoan": {
+      "title": "CirculationLoan",
+      "description": "A book borrowing request, active loan, or completed return record.",
+      "type": "object",
+      "properties": {
+        "bookId": {
+          "type": "string",
+          "description": "ID of the borrowed book in /books",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "bookTitleBn": {
+          "type": "string",
+          "description": "Bangla title snapshot",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "bookTitleEn": {
+          "type": "string",
+          "description": "English title snapshot",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "studentId": {
+          "type": "string",
+          "description": "ID of the student record in /studentApprovals",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "studentName": {
+          "type": "string",
+          "description": "Student name snapshot",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "rollNumber": {
+          "type": "string",
+          "description": "Student college roll number",
+          "minLength": 2,
+          "maxLength": 32
+        },
+        "issueDate": {
+          "type": "string",
+          "description": "ISO date string when book was requested or issued",
+          "minLength": 8,
+          "maxLength": 30
+        },
+        "dueDate": {
+          "type": "string",
+          "description": "ISO date string when book is due",
+          "minLength": 8,
+          "maxLength": 30
+        },
+        "status": {
+          "type": "string",
+          "description": "Circulation lifecycle state",
+          "enum": ["requested", "issued", "returned"]
+        },
+        "fineAmountBdt": {
+          "type": "integer",
+          "description": "Calculated overdue fine in BDT"
+        },
+        "issuedByUid": {
+          "type": "string",
+          "description": "UID of the user who initiated or processed the loan",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server update timestamp"
+        }
+      },
+      "required": [
+        "bookId",
+        "bookTitleBn",
+        "bookTitleEn",
+        "studentId",
+        "studentName",
+        "rollNumber",
+        "issueDate",
+        "dueDate",
+        "status",
+        "fineAmountBdt",
+        "issuedByUid",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "AdminRecord": {
+      "title": "AdminRecord",
+      "description": "Trusted Admin role document indexed by user UID.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Firebase Auth UID of the administrator",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "role": {
+          "type": "string",
+          "description": "Strict admin role marker",
+          "enum": ["admin"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server creation timestamp"
+        }
+      },
+      "required": ["uid", "role", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/books/{bookId}": {
+      "schema": { "$ref": "#/entities/Book" },
+      "description": "College library catalog of Bangla and academic books"
+    },
+    "/librarians/{librarianId}": {
+      "schema": { "$ref": "#/entities/Librarian" },
+      "description": "Librarian staff directory managed by Admin"
+    },
+    "/studentApprovals/{studentId}": {
+      "schema": { "$ref": "#/entities/StudentApproval" },
+      "description": "Student library membership registration and approval records"
+    },
+    "/circulationLoans/{loanId}": {
+      "schema": { "$ref": "#/entities/CirculationLoan" },
+      "description": "Book issue, borrow request, and return circulation records"
+    },
+    "/admins/{adminUid}": {
+      "schema": { "$ref": "#/entities/AdminRecord" },
+      "description": "Trusted administrator lookup collection"
+    }
+  }
+}

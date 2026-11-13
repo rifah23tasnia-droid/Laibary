@@ -1,0 +1,32 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-bengali: 'Noto Serif Bengali', serif;
+  }
+
+  body {
+    font-family: var(--font-sans), var(--font-bengali), sans-serif;
+  }
+
+  h1, h2, .font-display {
+    font-family: var(--font-display), var(--font-bengali), serif;
+  }
+
+  .font-bengali {
+    font-family: var(--font-bengali), var(--font-sans), serif;
+  }
+
+  .font-mono {
+    font-family: var(--font-mono), monospace;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
